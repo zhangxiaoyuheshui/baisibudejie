@@ -1,0 +1,6 @@
+framework module Pods_BaiSiJoke {
+  umbrella header "Pods-BaiSiJoke-umbrella.h"
+
+  export *
+  module * { export * }
+}

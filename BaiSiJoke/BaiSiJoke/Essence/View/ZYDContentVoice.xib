@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZYDContentVoice" customModule="BaiSiJoke" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageBackground" translatesAutoresizingMaskIntoConstraints="NO" id="ti7-JX-ey5">
+                    <rect key="frame" x="150" y="10" width="75" height="15"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vri-GZ-2az">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMY-uS-FWA">
+                    <rect key="frame" x="327.5" y="10" width="37.5" height="18"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiH-NU-691">
+                    <rect key="frame" x="327.5" y="272" width="37.5" height="18"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xY0-bD-8Me">
+                    <rect key="frame" x="156.5" y="118.5" width="63" height="63"/>
+                    <state key="normal" image="playButtonPlay" backgroundImage="playButton"/>
+                    <connections>
+                        <action selector="play:" destination="iN0-l3-epB" eventType="touchUpInside" id="7Yq-iv-dyV"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="xY0-bD-8Me" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="74B-bW-lPD"/>
+                <constraint firstItem="Vri-GZ-2az" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="J3q-RG-hyB"/>
+                <constraint firstItem="xY0-bD-8Me" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Qc4-Jq-rC9"/>
+                <constraint firstItem="Vri-GZ-2az" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="RtC-Ix-qsM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OMY-uS-FWA" secondAttribute="trailing" constant="10" id="TnD-4F-k9b"/>
+                <constraint firstItem="ti7-JX-ey5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XOk-mq-Puo"/>
+                <constraint firstItem="OMY-uS-FWA" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="Z0V-9R-x9p"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Vri-GZ-2az" secondAttribute="trailing" id="bnO-dz-Pch"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZiH-NU-691" secondAttribute="trailing" constant="10" id="fM6-Gr-HAl"/>
+                <constraint firstItem="ti7-JX-ey5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="nSn-Cw-ZUz"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Vri-GZ-2az" secondAttribute="bottom" id="sTL-rr-9y2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ZiH-NU-691" secondAttribute="bottom" constant="10" id="vOY-Rr-E3F"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="bgView" destination="ti7-JX-ey5" id="1cI-Em-j2f"/>
+                <outlet property="palyButton" destination="xY0-bD-8Me" id="OyU-E4-biK"/>
+                <outlet property="pictureView" destination="Vri-GZ-2az" id="5R9-Xp-jya"/>
+                <outlet property="playCountLabel" destination="OMY-uS-FWA" id="gPp-lR-VAO"/>
+                <outlet property="voiceTimeLabel" destination="ZiH-NU-691" id="tWj-FM-cwa"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="imageBackground" width="75" height="15"/>
+        <image name="playButton" width="63" height="63"/>
+        <image name="playButtonPlay" width="30" height="30"/>
+    </resources>
+</document>

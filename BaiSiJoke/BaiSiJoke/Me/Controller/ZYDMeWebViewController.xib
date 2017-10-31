@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZYDMeWebViewController" customModule="BaiSiJoke" customModuleProvider="target">
+            <connections>
+                <outlet property="backButton" destination="WOw-As-nhw" id="Ptg-kD-Vc5"/>
+                <outlet property="forwardButton" destination="44m-9h-hgF" id="jcF-VZ-lbL"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="FMJ-Bq-AFS" id="hZX-AX-CN9"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vy-FS-FVe">
+                    <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                    <items>
+                        <barButtonItem title="&lt;" id="WOw-As-nhw">
+                            <connections>
+                                <action selector="webBack:" destination="-1" id="zpX-wt-O9i"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="&gt;" id="44m-9h-hgF">
+                            <connections>
+                                <action selector="webForward:" destination="-1" id="c9B-Oa-98t"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="JbN-CY-tkr"/>
+                        <barButtonItem systemItem="refresh" id="du7-sR-8vV">
+                            <connections>
+                                <action selector="webRefresh:" destination="-1" id="Qhm-Ub-RvH"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FMJ-Bq-AFS">
+                    <rect key="frame" x="0.0" y="20" width="375" height="603"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </webView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="FMJ-Bq-AFS" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="6py-tu-jSG"/>
+                <constraint firstItem="1vy-FS-FVe" firstAttribute="top" secondItem="FMJ-Bq-AFS" secondAttribute="bottom" id="6zD-RA-Pbk"/>
+                <constraint firstItem="1vy-FS-FVe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AsO-Nd-L7O"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FMJ-Bq-AFS" secondAttribute="trailing" id="MWi-wa-fNp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1vy-FS-FVe" secondAttribute="trailing" id="UY7-5F-q9b"/>
+                <constraint firstItem="FMJ-Bq-AFS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="h3u-hW-G9C"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="1vy-FS-FVe" secondAttribute="bottom" id="vZ9-d1-L5L"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+</document>
