@@ -45,6 +45,8 @@ class ZYDContent: NSObject {
     var playcount: Int = 0
     /// 播放时长
     var voicetime: Int = 0
+    /// 音频地址
+    var voiceuri: String = ""
     /// 视频时长
     var videotime: Int = 0
     /// 类型

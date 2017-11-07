@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,19 +36,66 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xY0-bD-8Me">
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xY0-bD-8Me">
                     <rect key="frame" x="156.5" y="118.5" width="63" height="63"/>
                     <state key="normal" image="playButtonPlay" backgroundImage="playButton"/>
                     <connections>
                         <action selector="play:" destination="iN0-l3-epB" eventType="touchUpInside" id="7Yq-iv-dyV"/>
                     </connections>
                 </button>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1L7-i9-Fih">
+                    <rect key="frame" x="0.0" y="270" width="375" height="30"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbb-0j-gnN">
+                            <rect key="frame" x="5" y="6.5" width="21.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="EgA-wD-g9b">
+                            <rect key="frame" x="34.5" y="-0.5" width="294.5" height="31"/>
+                            <color key="minimumTrackTintColor" red="0.82451714409999999" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="maximumTrackTintColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="thumbTintColor" red="0.82451714409999999" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="changPlayerProgress:" destination="iN0-l3-epB" eventType="valueChanged" id="KND-HH-4WU"/>
+                                <action selector="touchDown:" destination="iN0-l3-epB" eventType="touchDown" id="NxU-8J-QS3"/>
+                                <action selector="touchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="qV1-Mw-4as"/>
+                            </connections>
+                        </slider>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aT-GL-GVH">
+                            <rect key="frame" x="337" y="7" width="30" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="NhR-c1-5W2">
+                            <rect key="frame" x="39.5" y="4.5" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="NhR-c1-5W2" firstAttribute="leading" secondItem="EgA-wD-g9b" secondAttribute="leading" constant="3" id="0aF-c6-DAY"/>
+                        <constraint firstItem="8aT-GL-GVH" firstAttribute="leading" secondItem="EgA-wD-g9b" secondAttribute="trailing" constant="10" id="D2b-Kv-vld"/>
+                        <constraint firstItem="Lbb-0j-gnN" firstAttribute="leading" secondItem="1L7-i9-Fih" secondAttribute="leading" constant="5" id="OKi-c6-Cyp"/>
+                        <constraint firstAttribute="trailing" secondItem="8aT-GL-GVH" secondAttribute="trailing" constant="8" id="RvR-LH-4R3"/>
+                        <constraint firstItem="NhR-c1-5W2" firstAttribute="centerY" secondItem="EgA-wD-g9b" secondAttribute="centerY" id="b0G-EX-hJ4"/>
+                        <constraint firstAttribute="height" constant="30" id="bbI-aA-hIx"/>
+                        <constraint firstItem="Lbb-0j-gnN" firstAttribute="centerY" secondItem="1L7-i9-Fih" secondAttribute="centerY" id="eWg-g5-4Zd"/>
+                        <constraint firstItem="EgA-wD-g9b" firstAttribute="centerY" secondItem="1L7-i9-Fih" secondAttribute="centerY" id="g15-8O-fN3"/>
+                        <constraint firstItem="EgA-wD-g9b" firstAttribute="leading" secondItem="Lbb-0j-gnN" secondAttribute="trailing" constant="10" id="idC-5D-sAF"/>
+                        <constraint firstItem="8aT-GL-GVH" firstAttribute="centerY" secondItem="1L7-i9-Fih" secondAttribute="centerY" id="tBt-nk-oDS"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="xY0-bD-8Me" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="74B-bW-lPD"/>
                 <constraint firstItem="Vri-GZ-2az" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="J3q-RG-hyB"/>
+                <constraint firstItem="1L7-i9-Fih" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Nlm-jI-P5o"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="1L7-i9-Fih" secondAttribute="bottom" id="PL0-Bg-4ej"/>
                 <constraint firstItem="xY0-bD-8Me" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Qc4-Jq-rC9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="1L7-i9-Fih" secondAttribute="trailing" id="R15-yS-5cf"/>
                 <constraint firstItem="Vri-GZ-2az" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="RtC-Ix-qsM"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OMY-uS-FWA" secondAttribute="trailing" constant="10" id="TnD-4F-k9b"/>
                 <constraint firstItem="ti7-JX-ey5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XOk-mq-Puo"/>
@@ -63,9 +110,14 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="bgView" destination="ti7-JX-ey5" id="1cI-Em-j2f"/>
+                <outlet property="currentTime" destination="Lbb-0j-gnN" id="jcV-19-6Mq"/>
+                <outlet property="indicatorView" destination="NhR-c1-5W2" id="biS-xM-U1H"/>
                 <outlet property="palyButton" destination="xY0-bD-8Me" id="OyU-E4-biK"/>
                 <outlet property="pictureView" destination="Vri-GZ-2az" id="5R9-Xp-jya"/>
                 <outlet property="playCountLabel" destination="OMY-uS-FWA" id="gPp-lR-VAO"/>
+                <outlet property="progressView" destination="1L7-i9-Fih" id="7Gx-sL-ldV"/>
+                <outlet property="slider" destination="EgA-wD-g9b" id="zD8-ds-c3k"/>
+                <outlet property="totalTime" destination="8aT-GL-GVH" id="cJw-jI-V0R"/>
                 <outlet property="voiceTimeLabel" destination="ZiH-NU-691" id="tWj-FM-cwa"/>
             </connections>
         </view>

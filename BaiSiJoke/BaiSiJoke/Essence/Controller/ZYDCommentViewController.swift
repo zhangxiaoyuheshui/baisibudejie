@@ -49,7 +49,7 @@ class ZYDCommentViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(changeViewFrame(_:)), name: NSNotification.Name.init("UIKeyboardWillChangeFrameNotification"), object: nil)
         
      
-        // FIX ME: - iOS11 不需要这两句 自动计算cell的高度
+        // FIXME: - iOS11 不需要这两句 自动计算cell的高度
 //        tableView.estimatedRowHeight = 44
 //        tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -80,6 +80,12 @@ class ZYDCommentViewController: UIViewController {
         cell.content = content
         cell.content?.cellHeight
         cell.setupUI()
+        
+        if cell.voiceView.isHidden == false {
+            cell.voiceView.palyButton.isUserInteractionEnabled = true
+            cell.voiceView.progressView.isHidden = false
+            cell.voiceView.changeProgressViewToInit(0)
+        }
         let frame = cell.frame
         let x = frame.origin.x
         let y = frame.origin.y
