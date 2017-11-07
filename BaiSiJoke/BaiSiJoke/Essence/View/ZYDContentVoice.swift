@@ -23,6 +23,8 @@ class ZYDContentVoice: UIView {
     
     var content: ZYDContent!
     
+    var playItem: AVPlayerItem!
+    
     var player: AVPlayer!
     
     @IBOutlet weak var progressView: UIView!
@@ -77,8 +79,12 @@ class ZYDContentVoice: UIView {
         guard let url = URL(string: content.voiceuri) else {
             return
         }
-        player = AVPlayer(url: url)
-        player.addObserver(self, forKeyPath: "status", options: .new, context: nil)
+        
+        playItem = AVPlayerItem(url: url)
+        
+        player = AVPlayer(playerItem: playItem)
+        
+        playItem.addObserver(self, forKeyPath: "status", options: .new, context: nil)
         
         player.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) { [weak self] (cmTime: CMTime) in
             let current = CMTimeGetSeconds(cmTime)
@@ -97,18 +103,19 @@ class ZYDContentVoice: UIView {
     
     @objc private func playEnd() {
         changeProgressViewToInit(0)
+        playItem.removeObserver(self, forKeyPath: "status")
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         if  keyPath == "status" {
-            switch player.status {
+            switch playItem.status {
             case .unknown:
                 print("loading...")
-                indicatorView.isHidden = false
+                indicatorView.alpha = 1.0
             case .readyToPlay:
                 print("can paly")
-                indicatorView.isHidden = true
+                indicatorView.alpha = 0.0
                 player.play()
             case .failed:
                 let alert = UIAlertView(title: "播放失败", message: "请重试", delegate: nil, cancelButtonTitle: "取消")
@@ -131,6 +138,8 @@ class ZYDContentVoice: UIView {
    
     
     @IBAction func changPlayerProgress(_ sender: UISlider) {
+        
+        // 没有用到
         
     }
     
