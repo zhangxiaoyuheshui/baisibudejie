@@ -84,7 +84,7 @@ class ZYDCommentViewController: UIViewController {
         if cell.voiceView.isHidden == false {
             cell.voiceView.palyButton.isUserInteractionEnabled = true
             cell.voiceView.progressView.isHidden = false
-            cell.voiceView.changeProgressViewToInit(0)
+            cell.voiceView.setupPlayer()
         }
         let frame = cell.frame
         let x = frame.origin.x

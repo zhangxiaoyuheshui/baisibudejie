@@ -62,30 +62,32 @@ class ZYDContentVoice: UIView {
         
     }
     
-    @IBAction private func play(_ sender: UIButton) {
-       
-        guard player == nil else {
-            if #available(iOS 10.0, *) {
-                if player.timeControlStatus == .paused {
-                    player.play()
-                }
-                if player.timeControlStatus == .playing {
-                    player.pause()
-                }
-            }
-            return
-        }
+    
+    // MARK: - 音频播放
+    
+    func setupPlayer() {
         
+        // 1.设置初始化信息
+        voiceTimeLabel.isHidden = true
+        progressView.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
+        currentTime.text = "00:00"
+        indicatorView.alpha = 0.0
+        totalTime.text = voiceTimeLabel.text
+        slider.value = 0.0
+
+        // 2.设置button
+        palyButton.setImage(UIImage(named: "icon_play"), for: .normal)
+        palyButton.setImage(UIImage(named: "icon_stop"), for: .selected)
+        
+        // 3.初始化playItem
         guard let url = URL(string: content.voiceuri) else {
             return
         }
-        
         playItem = AVPlayerItem(url: url)
-        
-        player = AVPlayer(playerItem: playItem)
-        
         playItem.addObserver(self, forKeyPath: "status", options: .new, context: nil)
         
+        //
+        player = AVPlayer(playerItem: playItem)
         player.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) { [weak self] (cmTime: CMTime) in
             let current = CMTimeGetSeconds(cmTime)
             let min = (Int(current) / 60) > 9 ? "\((Int(current) / 60))" : "0\((Int(current) / 60))"
@@ -100,10 +102,23 @@ class ZYDContentVoice: UIView {
         NotificationCenter.default.addObserver(self, selector: #selector(playEnd), name: NSNotification.Name(rawValue: "AVPlayerItemDidPlayToEndTimeNotification"), object: nil)
     }
     
+    @IBAction private func play(_ sender: UIButton) {
+        if sender.isSelected {
+            player.pause()
+        } else {
+            player.play()
+        }
+        sender.isSelected = !sender.isSelected
+    }
+    
     
     @objc private func playEnd() {
-        changeProgressViewToInit(0)
+        NotificationCenter.default.removeObserver(self)
         playItem.removeObserver(self, forKeyPath: "status")
+        playItem = nil
+        player = nil
+        palyButton.isSelected = true
+        setupPlayer()
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -116,42 +131,30 @@ class ZYDContentVoice: UIView {
             case .readyToPlay:
                 print("can paly")
                 indicatorView.alpha = 0.0
-                player.play()
             case .failed:
-                let alert = UIAlertView(title: "播放失败", message: "请重试", delegate: nil, cancelButtonTitle: "取消")
-                alert.show()
                 print("failed")
             }
         }
     }
-    
-    public func changeProgressViewToInit(_ progress:Int) {
-        voiceTimeLabel.isHidden = true
-        progressView.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
-        currentTime.text = "00:00"
-        indicatorView.alpha = 0.0
-        totalTime.text = voiceTimeLabel.text
-        slider.value = 0.0
-        player = nil
-        NotificationCenter.default.removeObserver(self)
-    }
-   
-    
-    @IBAction func changPlayerProgress(_ sender: UISlider) {
-        
-        // 没有用到
-        
-    }
-    
-    @IBAction func touchUpInside(_ sender: UISlider) {
-        player.seek(to: CMTimeMakeWithSeconds(Float64(sender.value * Float(content.voicetime)), 1))
+    // MARK: - slider
+    @IBAction private func touchUpInside(_ sender: UISlider) {
+        // player.currentItem.currentTime.timescale
+        player.seek(to: CMTimeMakeWithSeconds(Float64(sender.value * Float(content.voicetime)), player.currentItem!.currentTime().timescale))
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.03) {
             self.isTouchSlider = false
         }
     }
     
-    @IBAction func touchDown(_ sender: UISlider) {
+    @IBAction private func touchDown(_ sender: UISlider) {
         isTouchSlider = true
     }
     
+    // MARK: - deinit
+    deinit {
+        // 未播放结束离开页面
+        if playItem != nil {
+            NotificationCenter.default.removeObserver(self)
+            playItem.removeObserver(self, forKeyPath: "status")
+        }
+    }
 }
